@@ -18,6 +18,10 @@ https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html
 $ helm create pgadmin4
 ```
 
+## Guia para la creacion de charts oficial
+
+https://helm.sh/docs/chart_template_guide/
+
 ## empaquetar el chart
 ```
 $ helm package pgadmin4

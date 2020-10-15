@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  pgadmin4:
+  - apiVersion: v2
+    appVersion: "4.26"
+    created: "2020-10-15T16:57:16.915049-05:00"
+    description: Pgadmin4 client
+    digest: 91ee06e79efc5e411a6fea91917bfeff2c55d5b47ece9eab7fa388056571242a
+    name: pgadmin4
+    type: application
+    urls:
+    - pgadmin4-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-10-15T16:57:16.910537-05:00"

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  {{ include "pgadmin4.fullname" . }}
+  namespace: default
+  labels:
+    app:  {{ include "pgadmin4.fullname" . }}
+    {{- include "pgadmin4.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ include "pgadmin4.fullname" . }}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  {{ include "pgadmin4.fullname" . }}
+    spec:
+      containers:
+      - name:  pgadmin4
+        image:  "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
+        resources: {{toYaml .Values.resources | nindent 10 }}
+        env:
+        - name: PGADMIN_DEFAULT_EMAIL
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "pgadmin4.fullname" . }}
+              key: PGADMIN_DEFAULT_EMAIL
+        - name: PGADMIN_DEFAULT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "pgadmin4.fullname" . }}-pwd
+              key: PGADMIN_DEFAULT_PASSWORD
+        ports:
+        - containerPort:  80
+          name:  http
+      restartPolicy: Always
